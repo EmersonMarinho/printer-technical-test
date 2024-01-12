@@ -1,9 +1,11 @@
 import { DataTypes, Model } from 'sequelize'
 import db from '.'
 import User from './UserModel'
+import Directory from './DirectoryModel'
 
 class File extends Model {
   declare id: string
+  declare directoryId: string
   declare filename: string
   declare filepath: string
   declare ownerId: string
@@ -15,6 +17,14 @@ File.init(
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
+    },
+    directoryId: { 
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: 'directories',
+        key: 'id',
+      },
     },
     filename: {
       type: DataTypes.STRING,
@@ -41,9 +51,14 @@ File.init(
   },
 )
 
-File.belongsTo(User, {
-    foreignKey: 'userId',
-    as: 'owner',
-  });
+File.belongsTo(Directory, {
+  foreignKey: 'directoryId',
+  as: 'directory',
+})
+
+File.hasMany(User, {
+  foreignKey: 'userId',
+  as: 'ownedFiles',
+})
 
 export default File
