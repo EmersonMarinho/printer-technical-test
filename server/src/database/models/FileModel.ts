@@ -1,11 +1,12 @@
 import { DataTypes, Model } from 'sequelize'
 import db from '.'
+import User from './UserModel'
 
 class File extends Model {
   declare id: string
   declare filename: string
   declare filepath: string
-  declare userId: string
+  declare ownerId: string
 }
 
 File.init(
@@ -23,7 +24,7 @@ File.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userId: {
+    ownerId: {
       type: DataTypes.UUID,
       references: {
         model: 'users',
@@ -39,5 +40,10 @@ File.init(
     timestamps: true,
   },
 )
+
+File.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'owner',
+  });
 
 export default File

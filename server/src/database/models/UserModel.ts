@@ -7,6 +7,8 @@ import {
   CreationOptional,
 } from 'sequelize'
 import db from '.'
+import File from './FileModel'
+import Directory from './DirectoryModel'
 
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<string>
@@ -49,5 +51,16 @@ User.init(
     timestamps: false,
   },
 )
+
+User.hasMany(File, {
+    foreignKey: 'userId',
+    as: 'ownedFiles'
+  });
+
+User.hasMany(Directory, {
+    foreignKey: 'ownerId',
+    as: 'ownedDirectories'
+  });
+  
 
 export default User
