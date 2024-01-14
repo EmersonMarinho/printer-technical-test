@@ -28,6 +28,35 @@ export default {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
+      parentId: {
+        allowNull: false,
+        type: DataTypes.UUID,
+        references: {
+          model: 'directories',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
+      is_Folder: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+      size: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        field: 'created_at',
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        field: 'updated_at',
+      },
     })
   },
   down(queryInterface: QueryInterface) {

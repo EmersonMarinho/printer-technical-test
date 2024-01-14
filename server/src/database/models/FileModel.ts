@@ -9,6 +9,11 @@ class File extends Model {
   declare filename: string
   declare filepath: string
   declare ownerId: string
+  declare parentId: string
+  declare isFolder: boolean
+  declare size: number
+  declare createdAt: Date
+  declare updatedAt: Date
 }
 
 File.init(
@@ -43,6 +48,34 @@ File.init(
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
+    parentId: {
+      type: DataTypes.UUID,
+      references: {
+        model: 'files',
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
+    isFolder: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    size: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: 'created_at',
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: 'updated_at',
+    }
   },
   {
     sequelize: db,

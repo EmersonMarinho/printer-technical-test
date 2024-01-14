@@ -10,6 +10,10 @@ export default {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
       },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       email: {
         unique: true,
         allowNull: false,

@@ -16,6 +16,8 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare email: string
   declare password: CreationOptional<string>
   declare role: string
+  declare createdAt: CreationOptional<Date>
+  declare updatedAt: CreationOptional<Date>
 }
 
 User.init(
@@ -43,6 +45,16 @@ User.init(
       allowNull: false,
       type: DataTypes.ENUM,
       values: ['ADMIN', 'OWNER', 'GUEST'],
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'created_at',
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'updated_at',
     },
   },
   {

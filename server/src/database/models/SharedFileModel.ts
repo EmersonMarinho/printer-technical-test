@@ -43,7 +43,7 @@ SharedFile.init(
       },
     },
     permission: {
-      type: DataTypes.ENUM('READ'),
+      type: DataTypes.ENUM("READ", "EDIT", "DELETE"),
       allowNull: false,
     },
   },

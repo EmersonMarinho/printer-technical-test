@@ -3,4 +3,6 @@ export default interface IDirectory {
     name: string
     parentId: string
     ownerId: string
+    createdAt?: Date
+    updatedAt?: Date
 }

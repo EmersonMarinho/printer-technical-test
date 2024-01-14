@@ -3,4 +3,9 @@ export default interface IFile {
   filename: string
   filepath: string
   userId: string
+  parentId: string
+  is_Folder: boolean
+  size: number
+  createdAt?: Date
+  updatedAt?: Date
 }

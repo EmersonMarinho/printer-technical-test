@@ -7,6 +7,8 @@ class Directory extends Model {
   declare name: string;
   declare parentId: string | null;
   declare ownerId: string;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 Directory.init(
@@ -38,6 +40,16 @@ Directory.init(
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: 'created_at',
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: 'updated_at',
+    }
   },
   {
     sequelize: db,
