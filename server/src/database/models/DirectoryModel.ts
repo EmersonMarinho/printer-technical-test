@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
-import User from './UserModel';
+import File from './FileModel';
 
 class Directory extends Model {
   declare id: string;
@@ -68,9 +68,10 @@ Directory.belongsTo(Directory, {
   as: 'parent',
 });
 
-Directory.belongsTo(User, {
-    foreignKey: 'ownerId',
-    as: 'owner'
-  });
+// File.belongsTo(Directory, {
+//   foreignKey: 'directoryId',
+//   as: 'directory',
+// })
+
 
 export default Directory;

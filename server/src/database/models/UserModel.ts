@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import {
   DataTypes,
   Model,
@@ -73,6 +72,11 @@ User.hasMany(Directory, {
     foreignKey: 'ownerId',
     as: 'ownedDirectories'
   });
+
+Directory.belongsTo(User, {
+    foreignKey: 'ownerId',
+    as: 'owner'
+});
   
 
 export default User

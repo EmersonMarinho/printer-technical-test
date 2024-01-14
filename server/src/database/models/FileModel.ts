@@ -48,6 +48,15 @@ File.init(
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
+    parentId: {
+      type: DataTypes.UUID,
+      references: {
+        model: 'directories',
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
     isFolder: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -80,9 +89,5 @@ File.belongsTo(Directory, {
   as: 'directory',
 })
 
-File.hasMany(User, {
-  foreignKey: 'userId',
-  as: 'ownedFiles',
-})
 
 export default File
