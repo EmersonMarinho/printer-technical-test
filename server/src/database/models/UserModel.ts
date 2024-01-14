@@ -10,6 +10,9 @@ import File from './FileModel'
 import Directory from './DirectoryModel'
 
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
+  checkPassword(password: string) {
+      throw new Error("Method not implemented.")
+  }
   declare id: CreationOptional<string>
   declare name: string
   declare email: string
