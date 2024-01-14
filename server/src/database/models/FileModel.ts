@@ -48,15 +48,6 @@ File.init(
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
-    parentId: {
-      type: DataTypes.UUID,
-      references: {
-        model: 'files',
-        key: 'id',
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'CASCADE',
-    },
     isFolder: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
