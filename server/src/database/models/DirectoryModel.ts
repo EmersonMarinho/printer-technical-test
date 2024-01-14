@@ -68,10 +68,7 @@ Directory.belongsTo(Directory, {
   as: 'parent',
 });
 
-// File.belongsTo(Directory, {
-//   foreignKey: 'directoryId',
-//   as: 'directory',
-// })
+
 
 
 export default Directory;

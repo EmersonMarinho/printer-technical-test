@@ -11,4 +11,12 @@ export default class CreateUserController {
 
         return response.json(user);
     }
+
+    async login(request: Request, response: Response) {
+        const { email, password } = request.body;
+
+        const user = await userService.login({ email, password });
+
+        return response.json(user);
+    }
 }    

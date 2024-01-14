@@ -41,4 +41,39 @@ export default class CreateUserService implements ICreateUserService {
             }
         };
     }
+
+    async login(data: { email: string; password: string }): Promise<ServiceResponse> {
+        const { email, password } = data;
+
+        const user = await User.findOne({ where: { email } });
+
+        if (!user) {
+            return {
+                status: 400,
+                data: { message: 'User not found' }
+            };
+        }
+
+        const passwordMatched = await bcrypt.compare(password, user.password);
+
+        if (!passwordMatched) {
+            return {
+                status: 400,
+                data: { message: 'Incorrect email/password combination' }
+            };
+        }
+
+        const token = sign({}, secret, {
+            subject: user.toString(),
+            expiresIn: '1d'
+        });
+
+        return {
+            status: 200,
+            data: {
+                message: 'User logged in successfully',
+                token
+            }
+        };
+    }
 }
